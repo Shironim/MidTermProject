@@ -39,7 +39,13 @@ const postComment = async (req, res) =>{
   });
   try{
     const saveComment = await comment.save();
-    res.status(200).json(saveComment);
+    res.status(200).json({
+      message: "Comment added successfully",
+      data : {
+        username: saveComment.username,
+        comment: saveComment.comment,
+      }
+    });
   } catch(error){
     res.status(500).json({ message: error.message });
   }
