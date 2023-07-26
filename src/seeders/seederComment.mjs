@@ -20,7 +20,7 @@ async function seedData() {
     let timeSeriesData = [];
     // create 5000 fake data
     for (let i = 0; i < seed_count; i++) {
-        const videoId = "071ca8cf-4907-412a-8c6d-e34c8f321f9e";
+        const videoId = "videoId_from_seeder";
         const username = faker.person.fullName();
         const comment = faker.lorem.words(3);
 
