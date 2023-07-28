@@ -149,6 +149,7 @@ Return all product from databases.
 {
   result : [
     {
+      videoId,
       product_name,
       price_product,
       thumbnail_product,
@@ -223,6 +224,7 @@ Creates a new Product and returns the new object.
   ```
   {
     videoId :  string
+    product_name :  string
     price_product :  int
     thumbnail_product :  string
     link_product :  string
@@ -237,8 +239,8 @@ Creates a new Product and returns the new object.
 {
   message: "Product added successfully",
   data : {
-    price_product,
-    thumbnail_product
+    product_name,
+    price_product
   }
 }
 ```
