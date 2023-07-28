@@ -10,7 +10,7 @@
 * [How To Run](#how-to-run-in-local)
 
 ## Database Structure
-This project have 2 collection, videos and comment. 
+This project have 3 collection, videos, comment and product. 
 
 ### Videos Collection
 
@@ -20,14 +20,6 @@ This project have 2 collection, videos and comment.
     thumbnail: string
     shop_name: string
     video_title: string
-    product : [
-      {
-        product_name:  string
-        price_product:  number
-        thumbnail_product:  string
-        link_product:  string
-      }
-    ]
   }
  ```
 
@@ -41,41 +33,36 @@ This project have 2 collection, videos and comment.
 }
 ```
 
+### Product Collection
+
+```
+{
+  videoId :  string
+  product_name:  string
+  price_product:  number
+  thumbnail_product:  string
+  link_product:  string
+}
+```
+
 ## API Structure
 
 Endpoint ready to use
 
 ```
-GET   /
-GET   /tokplay
-GET   /tokplay/product
-GET   /tokplay/comment
-GET   /tokplay/{id}
-POST  /tokplay/comment/post
+GET   /product
+GET   /comment
+GET   /{id}
+POST  /comment/post
+POST  /product/post
 ```
 
 ## API Request Response
 
 ### GET /
 
-----
-Return json `message `
-* **URL Params**  
-  None
-* **Data Params**  
-  None
-* **Headers**  
-  Content-Type: application/json  
-* **Success Response:**  
-* **Code:** 200  
-  **Content:**  
-```
-{
-  message: 'API is running, you can use this API with /tokplay',
-}
-```
 
-### GET /tokplay
+### GET /
 
 ----
 Return all videos from databases.
@@ -96,21 +83,13 @@ Return all videos from databases.
       thumbnail,
       shop_name,
       video_title,
-      product : [
-        {
-          product_name,
-          price_product,
-          thumbnail_product,
-          link_product
-        }
-      ]
     }
   ]
 }
 ```
 
 
-### GET /tokplay/:id
+### GET /:id
 
 ----
 Return videos associated with the specified id.
@@ -131,12 +110,20 @@ Return videos associated with the specified id.
       thumbnail,
       shop_name,
       video_title,
-      product : [
+      products : [
         {
+          videoId,
           product_name,
           price_product,
           thumbnail_product,
           link_product
+        }
+      ]
+      comment : [
+        {
+          videoId,
+          username,
+          comment
         }
       ]
     }
@@ -145,7 +132,7 @@ Return videos associated with the specified id.
 ```
 
 
-### GET /tokplay/product
+### GET /product
 
 ----
 Return all product from databases.
@@ -161,20 +148,18 @@ Return all product from databases.
 ```
 {
   result : [
-    [
-      {
-        product_name,
-        price_product,
-        thumbnail_product,
-        link_product
-      }
-    ]
+    {
+      product_name,
+      price_product,
+      thumbnail_product,
+      link_product
+    }
   ]
 }
 ```
 
 
-### GET /tokplay/comment
+### GET /comment
 
 ----
 Return all comment from databases.
@@ -200,7 +185,7 @@ Return all comment from databases.
 ```
 
 
-### POST /tokplay/comment/post
+### POST /comment/post
 
 ----
 Creates a new Comment and returns the new object.
@@ -225,6 +210,35 @@ Creates a new Comment and returns the new object.
   data : {
     username,
     comment
+  }
+}
+```
+### POST /product/post
+
+----
+Creates a new Product and returns the new object.
+* **URL Params**  
+  None
+* **Data Params**  
+  ```
+  {
+    videoId :  string
+    price_product :  int
+    thumbnail_product :  string
+    link_product :  string
+  }
+  ```
+* **Headers**  
+  Content-Type: application/json  
+* **Success Response:**  
+* **Code:** 200  
+  **Content:**  
+```
+{
+  message: "Product added successfully",
+  data : {
+    price_product,
+    thumbnail_product
   }
 }
 ```
