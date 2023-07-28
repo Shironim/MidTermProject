@@ -6,7 +6,7 @@ import Comment from './comment.js';
 async function seedData() {
     // Connection URL
     const uri = "mongodb://127.0.0.1:27017/midTermGigih";
-    const seed_count = 4;
+    const seed_count = 2;
     mongoose.set("strictQuery", false);
     mongoose.connect(uri, {
         useNewUrlParser: true,
@@ -20,7 +20,7 @@ async function seedData() {
     let timeSeriesData = [];
     // create 5000 fake data
     for (let i = 0; i < seed_count; i++) {
-        const videoId = "videoId_from_seeder";
+        const videoId = "ca5d4799-dce9-425a-8a1d-e11956a0355f";
         const username = faker.person.fullName();
         const comment = faker.lorem.words(3);
 

@@ -1,7 +1,7 @@
 // require the necessary libraries
 import {faker} from '@faker-js/faker';
 import mongoose from 'mongoose';
-import Product from './video.js';
+import Video from './video.js';
 
 async function seedData() {
     // Connection URL
@@ -20,20 +20,7 @@ async function seedData() {
     let timeSeriesData = [];
     // create 5000 fake data
     for (let i = 0; i < seed_count; i++) {
-        let dataProduct = [];
-        for (let j = 0; j < 8; j++) {
-            const product_name = faker.commerce.productName();
-            const price_product = faker.commerce.price({ min: 10000, max: 200000 });
-            const thumbnail_product = faker.image.url();
-            const link_product = faker.image.url();
 
-            dataProduct.push({
-                product_name,
-                price_product,
-                thumbnail_product,
-                link_product
-            })
-        }
         const video_id = faker.string.uuid();
         const thumbnail = faker.image.url();
         const shop_name = faker.company.name();
@@ -44,12 +31,11 @@ async function seedData() {
             thumbnail,
             shop_name,
             video_title,
-            product: dataProduct
         });
     }
 
     const seedDB = async () => {
-        await Product.insertMany(timeSeriesData)
+        await Video.insertMany(timeSeriesData)
     }
 
     seedDB().then(() => {
