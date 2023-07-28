@@ -16,12 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.json({
-    message: 'API is running, you can use this API with /tokplay',
-  });
-});
-app.use('/tokplay', videoRouter);
+app.use('/', videoRouter);
 
 app.use((err, res) => {
   res.json({

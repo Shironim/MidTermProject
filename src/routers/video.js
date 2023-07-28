@@ -10,6 +10,9 @@ router.get('/comment', Controller.commentList);
 // Get all comments 
 router.get('/product', Controller.productList);
 
+// Get all comments 
+router.post('/product/post', Controller.postProduct);
+
 // Post a comment to a video
 router.post('/comment/post', Controller.postComment);
 
