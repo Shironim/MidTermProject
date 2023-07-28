@@ -50,6 +50,7 @@ This project have 3 collection, videos, comment and product.
 Endpoint ready to use
 
 ```
+GET   /
 GET   /product
 GET   /comment
 GET   /{id}
