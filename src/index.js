@@ -20,7 +20,13 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-app.use('/', videoRouter);
+app.get('/', (req, res) => {
+  res.json({
+    message: 'API is running'
+  })
+})
+
+app.use('/api/v1', videoRouter);
 
 app.use((err, res) => {
   res.json({
