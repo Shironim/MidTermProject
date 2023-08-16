@@ -31,3 +31,5 @@ app.use((err, res) => {
 app.listen(PORT, () => {
   console.log(`Server berhasil di running http://localhost:${PORT}`);
 })
+
+export default app;
